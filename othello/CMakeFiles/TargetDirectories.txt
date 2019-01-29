@@ -1,0 +1,3 @@
+/mnt/c/Users/LICHO/Downloads/othello/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/LICHO/Downloads/othello/CMakeFiles/_ProPlayer.dir
+/mnt/c/Users/LICHO/Downloads/othello/CMakeFiles/edit_cache.dir

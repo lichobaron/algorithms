@@ -1,0 +1,7 @@
+swig -python ProPlayer.i
+
+g++ -std=c++11 -fpic -c ProPlayer.cxx ProPlayer_wrap.c /usr/bin/python3
+g++ -shared ProPlayer.o ProPlayer_wrap.o -o ProPlayer.so
+
+
+

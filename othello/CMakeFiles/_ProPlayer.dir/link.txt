@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -std=c++11 -fpic  -shared  -o _ProPlayer.so CMakeFiles/_ProPlayer.dir/ProPlayerPYTHON_wrap.cxx.o CMakeFiles/_ProPlayer.dir/ProPlayer.cxx.o /usr/lib/x86_64-linux-gnu/libpython3.6m.so 
