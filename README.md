@@ -1,2 +1,2 @@
 # TalleresAA
-Talleres análisis de algoritmos
+Workshops analysis of algorithms.
