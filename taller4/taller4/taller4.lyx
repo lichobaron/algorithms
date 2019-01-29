@@ -1,0 +1,2487 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Taller 4
+\end_layout
+
+\begin_layout Author
+Carlos Barón - Andrés Cocunubo
+\end_layout
+
+\begin_layout Date
+14/02/2017
+\end_layout
+
+\begin_layout Enumerate
+Problema 1
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Descripcion del problema
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Escribir un algoritmo para encontrar la subsecencia contigua parcialmente
+ ordenada más larga de una secuencia dada.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Formalización
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Dada una secuencia 
+\begin_inset Formula $S$
+\end_inset
+
+ de 
+\begin_inset Formula $n$
+\end_inset
+
+ elementos que poseen una relacion de orden parcial, encontrar un subsecencia
+ 
+\begin_inset Formula $S'$
+\end_inset
+
+, donde 
+\begin_inset Formula $|S'|$
+\end_inset
+
+ sea la mayor.
+ 
+\end_layout
+
+\begin_layout Itemize
+Entradas: Una secuencia 
+\begin_inset Formula $S$
+\end_inset
+
+ de n elementos 
+\begin_inset Formula $S$
+\end_inset
+
+
+\begin_inset Formula $=$
+\end_inset
+
+ <
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $T$
+\end_inset
+
+> que posea una relacion de orden parcial 
+\begin_inset Formula $\leq$
+\end_inset
+
+ definida sobre una subsecencia 
+\begin_inset Formula $T$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $S$
+\end_inset
+
+= <
+\begin_inset Formula $a_{1}$
+\end_inset
+
+,
+\begin_inset Formula $a_{2}$
+\end_inset
+
+,...,
+\begin_inset Formula $a_{n}$
+\end_inset
+
+>
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Salidas: Un índice 
+\begin_inset Formula $i$
+\end_inset
+
+ que indica la posición inicial y un 
+\begin_inset Formula $j$
+\end_inset
+
+ que indica la posición final dentro de una subsecuencia 
+\begin_inset Formula $T$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $i,j,k$
+\end_inset
+
+ 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+ |
+\begin_inset Formula $a_{i}<a_{i+k}<a_{j}\in S$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Algoritmos
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solución "evidente" o "fuerza bruta"
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LargestOrderedSecuenceEvident(S) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+LargestOrderedSecuenceEvident_Helper(S,1,|S|)
+\end_layout
+
+\begin_layout Plain Layout
+procedure LargestOrderedSecuenceEvident_Helper(S,b,f) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+tam
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+0 
+\begin_inset Formula $\land$
+\end_inset
+
+ tam_aux
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+0 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+for i 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+b to f do 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+tam_aux
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+1 
+\begin_inset Formula $\land$
+\end_inset
+
+ j
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+i+1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+while j
+\begin_inset Formula $<$
+\end_inset
+
+f 
+\begin_inset Formula $\land$
+\end_inset
+
+ S[j-1]
+\begin_inset Formula $\leq$
+\end_inset
+
+S[j] do 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+tam_aux
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+tam_aux+1
+\begin_inset Formula $\land$
+\end_inset
+
+ j
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+j+1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+if tam
+\begin_inset Formula $<$
+\end_inset
+
+tam_aux then 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+tam=tam_aux 
+\begin_inset Formula $\land$
+\end_inset
+
+ind
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+i
+\begin_inset Formula $\land$
+\end_inset
+
+ ind
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+j-1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return ind
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Solución "eficiente"
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LongestOrderedSecuence(S)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+LongestOrderedSecuence_Helper(S,1,|S|)
+\end_layout
+
+\begin_layout Plain Layout
+procedure LongestOrderedSecuence_Center(S,i,f,q)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+aux
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+q
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+while q-1
+\begin_inset Formula $\geq$
+\end_inset
+
+i 
+\begin_inset Formula $\land$
+\end_inset
+
+ S[q-1]
+\begin_inset Formula $<$
+\end_inset
+
+S[q] do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+q
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+q-1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+indices
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+q 
+\begin_inset Formula $\land$
+\end_inset
+
+q
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+aux
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+while q+1
+\begin_inset Formula $\leq$
+\end_inset
+
+f 
+\begin_inset Formula $\land$
+\end_inset
+
+S[q+1]
+\begin_inset Formula $\land$
+\end_inset
+
+S[q] do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+q
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+q+1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+indices
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+q 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return indices
+\end_layout
+
+\begin_layout Plain Layout
+procedure LongestOrderedSecuence_Helper(S,i,f)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+if i==f then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+indices
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+i 
+\begin_inset Formula $\land$
+\end_inset
+
+indices
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+f
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return indices
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+q
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+(f+i)/2
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+left
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+LongestOrderedSecuence_Helper(S,i,q)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+right
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+LongestOrderedSecuence_Helper(S,q+1,f)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+center
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+LongestOrderedSecuence_Center(S,i,f,q)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+if right[2]-right[1]
+\begin_inset Formula $\leq$
+\end_inset
+
+left[2]-left[1]
+\begin_inset Formula $\land$
+\end_inset
+
+center[2]-center[1]
+\begin_inset Formula $\leq$
+\end_inset
+
+left[2]-left[1] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+return left
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+else if left[1]-left[0]
+\begin_inset Formula $\leq$
+\end_inset
+
+right[1]-right[0]
+\begin_inset Formula $\land$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+center[1]-center[0]
+\begin_inset Formula $\leq$
+\end_inset
+
+right[1]-right[0] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+return right
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+return center
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Invariante
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solución Evidente: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Los elementos que se encuentran dentro de las posiciones 
+\begin_inset Formula $j$
+\end_inset
+
+ y 
+\begin_inset Formula $j-1$
+\end_inset
+
+ están ordenados.
+\end_layout
+
+\begin_layout Itemize
+Solución Eficiente:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+La subsecuencia entre una posición anterior al pivote 
+\begin_inset Formula $(q-x)$
+\end_inset
+
+ y una posición posterior 
+\begin_inset Formula $(q+y)$
+\end_inset
+
+, donde 
+\begin_inset Formula $x\land y\in\mathbb{Z}$
+\end_inset
+
+ está ordenada.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Complejidad
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solución Evidente:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Por inspección de código como posee dos ciclo su complejidad es: 
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Solución Eficiente:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Según el caso 2 del teorema maestro
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ con 
+\begin_inset Formula $a=2,b=2,f(n)=O(n)$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+se tiene 
+\begin_inset Formula $O(n)=O(nlog_{2}(2)log_{2}^{0}(n))$
+\end_inset
+
+ por lo tanto, 
+\begin_inset Formula $T(n)$
+\end_inset
+
+ 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $Θ(nlog_{2}(n))$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Manual de uso
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Para ejecutar el programa se debe ejecutar Punto1.py con python3 tanto para
+ la solucion divide y venceras como fuerza bruta
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ Ejemplo ejecución en ubuntu:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+1.
+ Abrir una terminal en linux en el directorio del programa
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 2.
+ Ejecutar en la terminal "python3 Punto1.py".
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+3.
+ Se obtendrá la salida del algoritmo eficiente y despueś el algoritmo evidente.
+ En cada salida se puede ver el elemento donde comienza la subsecuencia
+ seguido del elemento donde termina la subsecuencia y el tiempo de ejecución.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Problema 2
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Descripción del Problema:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Encontrar los elementos minimo y maximo de un arreglo ordenado y rotado.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Formalización:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Dada una secuencia 
+\begin_inset Formula $S$
+\end_inset
+
+ de 
+\begin_inset Formula $n$
+\end_inset
+
+ elementos que poseen una relacion de orden parcial, encontrar el elemento
+ 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ que sea 
+\begin_inset Formula $\leq$
+\end_inset
+
+ a todos los elementos de 
+\begin_inset Formula $S$
+\end_inset
+
+ y el elemento 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{j}$
+\end_inset
+
+ que sea 
+\begin_inset Formula $>$
+\end_inset
+
+ a todos los elementos de 
+\begin_inset Formula $S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Entradas: Una secuencia 
+\begin_inset Formula $S$
+\end_inset
+
+ de 
+\begin_inset Formula $n$
+\end_inset
+
+ elementos 
+\begin_inset Formula $S$
+\end_inset
+
+ 
+\begin_inset Formula $=$
+\end_inset
+
+ <
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{i}$
+\end_inset
+
+
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $T$
+\end_inset
+
+> que posea una relacion de orden parcial 
+\begin_inset Formula $\leq$
+\end_inset
+
+ definida sobre 
+\begin_inset Formula $T$
+\end_inset
+
+ y que tenga 1 o r rotaciones.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $S$
+\end_inset
+
+
+\begin_inset Formula $=$
+\end_inset
+
+ <
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{2}$
+\end_inset
+
+, ..., 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{n}$
+\end_inset
+
+> | 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{1}$
+\end_inset
+
+ 
+\begin_inset Formula $\leq$
+\end_inset
+
+ 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{2}$
+\end_inset
+
+
+\begin_inset Formula $\leq$
+\end_inset
+
+ 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{n}$
+\end_inset
+
+ 
+\begin_inset Formula $\land$
+\end_inset
+
+ 
+\begin_inset Formula $\exists$
+\end_inset
+
+(
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{i}$
+\end_inset
+
+ 
+\begin_inset Formula $\nleq$
+\end_inset
+
+ 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{j}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Salidas: Un indice que indica la posición en 
+\begin_inset Formula $T$
+\end_inset
+
+ del menor y un indice que indica la posición en T del mayor.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $i,j$
+\end_inset
+
+ 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+ | 
+\begin_inset Formula $min$
+\end_inset
+
+ 
+\begin_inset Formula $=$
+\end_inset
+
+ 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{i}$
+\end_inset
+
+ 
+\begin_inset Formula $\land$
+\end_inset
+
+ 
+\begin_inset Formula $max$
+\end_inset
+
+ 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset Formula $_{j}$
+\end_inset
+
+
+\begin_inset Formula $\iff$
+\end_inset
+
+
+\begin_inset Formula $min$
+\end_inset
+
+ 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $S$
+\end_inset
+
+ 
+\begin_inset Formula $\land$
+\end_inset
+
+ 
+\begin_inset Formula $max$
+\end_inset
+
+ 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $S$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Algoritmos:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solución Evidente
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+prodecure FindMinMaxElementEvident(A)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+FindMinMaxElementEvidentHelper(A,1,|A|)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+prodecure FindMinMaxElementEvidentHelper(A,l,h)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+if A[h] 
+\begin_inset Formula $>$
+\end_inset
+
+ A[l] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ l
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ h
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+i
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 0
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+while i
+\begin_inset Formula $<$
+\end_inset
+
+h 
+\begin_inset Formula $\land$
+\end_inset
+
+ A[i] 
+\begin_inset Formula $<$
+\end_inset
+
+ A[i+1] do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+i
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ i+1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ i+1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ i
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Solución Eficiente
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+prodecure FindMinMaxElement(A)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+FindMinMaxElementHelper(A,1,|A|)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure FindMinMaxElementHelper(A,l,h)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+m
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ (h+l)/2
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+if A[h] 
+\begin_inset Formula $>$
+\end_inset
+
+ A[l] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ l
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ h
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else if A[m] 
+\begin_inset Formula $>$
+\end_inset
+
+ A[m+1] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ m+1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ m
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else if A[m-1] 
+\begin_inset Formula $>$
+\end_inset
+
+ A[m] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ m
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+R
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ m-1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else if A[l] 
+\begin_inset Formula $>$
+\end_inset
+
+ A[m] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return FindMinMaxElementHelper(A,l,m)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return FindMinMaxElementHelper(A,m+1,h)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Invariante:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solución Evidente: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+La subsecuencia entre 
+\begin_inset Formula $0$
+\end_inset
+
+ e 
+\begin_inset Formula $i$
+\end_inset
+
+ está ordenanda según el operador 
+\begin_inset Formula $\leq$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Solución Eficiente: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+La subsecuencia entre el pivote (
+\begin_inset Formula $m$
+\end_inset
+
+) y el indice correspondiente (
+\begin_inset Formula $l$
+\end_inset
+
+ o 
+\begin_inset Formula $h$
+\end_inset
+
+) está ordenada, según el operador 
+\begin_inset Formula $\leq$
+\end_inset
+
+ , y rotada.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Complejidad:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solución Evidente:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Por inspección de código, como solo posee un ciclo su complejidad es: 
+\begin_inset Formula $O(n)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Solución Eficiente:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Según el caso 2 del teorema maestro
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+con 
+\begin_inset Formula $a=1,$
+\end_inset
+
+ 
+\begin_inset Formula $b=2,$
+\end_inset
+
+ 
+\begin_inset Formula $f(n)=O(n)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+se tiene: 
+\begin_inset Formula $O(1)$
+\end_inset
+
+
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\begin_inset Formula $\Theta$
+\end_inset
+
+(
+\begin_inset Formula $n$
+\end_inset
+
+
+\begin_inset Formula $^{log_{2}1}log_{2}^{0}n$
+\end_inset
+
+)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ por lo tanto: 
+\begin_inset Formula $T(n)$
+\end_inset
+
+ 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $\Theta$
+\end_inset
+
+(
+\begin_inset Formula $log_{2}n$
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Manual de uso:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Para ejecutar el programa se debe ejecutar Punto2.py con python3 
+\end_layout
+
+\begin_layout Standard
+Ejemplo ejecución en ubuntu: 
+\end_layout
+
+\begin_layout Standard
+1.
+ Abrir una terminal en linux en el directorio del programa 
+\end_layout
+
+\begin_layout Standard
+2.
+ Ejecutar en la terminal "python3 Punto2.py"
+\end_layout
+
+\begin_layout Standard
+3.
+ Se obtendrá la salida del algoritmo eficiente y después del algoritmo evidente.
+ En cada salida se puede ver el menor elemento seguido del mayor elemento
+ y su tiempo de ejecución.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document

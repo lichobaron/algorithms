@@ -1,0 +1,1630 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Taller 5
+\end_layout
+
+\begin_layout Author
+Carlos Barón - Andrés Cocunubo
+\end_layout
+
+\begin_layout Date
+28-02-18
+\end_layout
+
+\begin_layout Enumerate
+Descripción del problema
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Encontrar la subsecuencia común más larga creciente entre dos secuencias
+ de símbolos, posiblemente de diferentes tamaños.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Formalización
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Entradas: Dos secuencias 
+\begin_inset Formula $X_{m}=\left[x_{1,}x_{2},...,x_{m}\right]$
+\end_inset
+
+ y 
+\begin_inset Formula $Y_{n}=\left[y_{1},y_{2},...,y_{n}\right]$
+\end_inset
+
+, posiblemente 
+\begin_inset Formula $m\neq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Salida : Una subsecuencia 
+\begin_inset Formula $Z=\left[z_{1},z_{2},...,z_{k}\right]$
+\end_inset
+
+ donde 
+\begin_inset Formula $z_{j}=x_{i_{a}}=y_{j_{a}}$
+\end_inset
+
+ para la secuencia estrictamente creciente 
+\begin_inset Formula $\left[i_{1}:j_{1},i_{2}:j_{2},...,i_{k}:j_{k}\right]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Algoritmos
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fuerza Bruta
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCSBruteForceAux(i,j,X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+if i < 0 
+\begin_inset Formula $\lor$
+\end_inset
+
+ j < 0 then return 0 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else if X[i-1] = Y[j-1] then 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+return LCSBruteForceAux(i-1, j-1, X, Y) + 1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+s1 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSBruteForceAux(i, j-1, X, Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+s2 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSBruteForceAux(i-1, j, X, Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+if s1 > s2 then return s1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+else return s2
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCSBruteForce(X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return LCSBruteForceAux(|X|, |Y|, X, Y)
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Memoización
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCSM_Aux(M,i,j,X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+if M[i][j] = 0
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+if i < 0 
+\begin_inset Formula $\lor$
+\end_inset
+
+ j < 0 then M[i][j] 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 0 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+else if X[i] = Y[j] then M[i][j] 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSM_Aux(M, i-1, j-1, X, Y) + 1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+else 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+s1 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSM_Aux(M, i, j-1, X, Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+s2 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSM_Aux(M, i-1, j, X, Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if s1 > s2 then M[i][j] 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ s1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+else 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+M[i][j] 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ s2 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return M[i][j]
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCSM(X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $M\in\mathbb{N}^{|X|x|Y|}\leftarrow[0]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+R 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSM_Aux(M,|X|,|Y|,X,Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Bottom-up
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCSBU_Aux(M,m,n,X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+for i 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+0 to m do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+M[i][0]
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 0 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+for i 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+0 to n do 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+M[0][i]
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 0 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+for i 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 1 to m do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+for j 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+1 to n do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if X[i] = Y[j] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+M[i][j] 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ M[i-1][j-1] + 1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+s1 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ M[i][j-1] 
+\begin_inset Formula $\land$
+\end_inset
+
+ s2 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ M[i-1][j] 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if s1 > s2 then 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+M[i][j] 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ s1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+else 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+M[i][j] 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ s2 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return M[m-1][n-1]
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCSBU(X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $M\in\mathbb{N}^{|X|x|Y|}\leftarrow[0]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $B\leftarrow\mathbb{\mathbb{N}}^{|X|x|Y|}\leftarrow end$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+R 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSBU_Aux(B,M,len(X),len(Y),X,Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+c 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSBT(B,M,len(X)-1,len(Y)-1,X,Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Back-Tracking
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCSBT(B,M,i,j,X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+cad 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ empty sequence
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+while B[i][j] != end do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+if B[i][j] = up then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if X[i] = Y[j] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+cad 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ cad + X[i] 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+i 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+i-1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+else if B[i][j] = left then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if X[i] = Y[j] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+cad 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ cad + Y[j] 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+j 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+j-1
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+else if B[i][j] = diagonal then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if X[i] = Y[j] then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+cad 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ cad + X[i] 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+i 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+i- 1
+\begin_inset Formula $\land$
+\end_inset
+
+ j 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+j- 1 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+cad 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ cad + X[j] 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return cad
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Programación Dinámica
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LCS(X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $M\in\mathbb{N}^{|X|x|Y|}\leftarrow[0]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $B\leftarrow\mathbb{\mathbb{N}}^{|X|x|Y|}\leftarrow end$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+R 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSBU_Aux(B,M,len(X),len(Y),X,Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+c 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ LCSBT(B,M,len(X)-1,len(Y)-1,X,Y) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return R
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Invariante
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Los datos que se encuentran dentro de la tabla de memoización 
+\begin_inset Formula $M$
+\end_inset
+
+ son los tamaños de la subsecuencia más larga según los simbolos que se
+ están en las secuencias 
+\begin_inset Formula $X,Y$
+\end_inset
+
+ recibidas por entrada, es decir, 
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+ representa el tamaño más grande hasta el simbolo que ha procesado de cada
+ secuencia.
+ Adicionalmente, el llenado de la tabla extra para realizar backtracking
+ 
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+ posee la misma invariante, pero esta solo guarda un valor que indica de
+ donde proviene.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Complejidad
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+La complejidad por inspección del algoritmo de bottom-up es 
+\begin_inset Formula $O(n+m+mn)$
+\end_inset
+
+, para el algoritmo de back-tracking es 
+\begin_inset Formula $O(k),$
+\end_inset
+
+ la complejidad del algoritmo de programación dinámica por inspección de
+ código es 
+\begin_inset Formula $O(mn)$
+\end_inset
+
+ donde 
+\begin_inset Formula $m$
+\end_inset
+
+ es el tamaño de la secuencia uno y 
+\begin_inset Formula $n$
+\end_inset
+
+ es el tamaño de la secuencia dos.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Análisis
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Como el algoritmo de fuerza bruta retorna solo el tamaño de la subsecuencia
+ más larga común entre las dos secuencias iniciales, se realiza la memoización
+ de los datos para conocer los tamaños de todas las subsecuencias que se
+ evaluan en la recursión, donde 
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+ representa el tamaño más grande hasta el simbolo que ha procesado de cada
+ secuencia y 
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+ indica la dirección en donde se encuentra la solución, 
+\begin_inset Quotes eld
+\end_inset
+
+izquierda, derecha, arriba y diagonal
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Se elimina la recursión con el algoritmo bottom-up, utilizando ciclos para
+ recorrer las secuencias para finalmente hacer back-tracking y obtener que
+ simbolos de las cadenas nos interesan para formar la subsecuencia con la
+ solución, se empieza desde la ultima posición de la matriz en donde con
+ ayuda de la matriz 
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+ y 
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+ se obtiene la dirección y el tamaño hasta el momento, si se encuentra en
+ una posición válida se guarda el simbolo obtenido de 
+\begin_inset Formula $Y[j]$
+\end_inset
+
+ si es un movimiento a la izquierda y 
+\begin_inset Formula $X[i]\land Y[i]$
+\end_inset
+
+ son iguales, o de 
+\begin_inset Formula $X[i]$
+\end_inset
+
+ si es un movimiento hacía arriba y si 
+\begin_inset Formula $X[i]\land Y[i]$
+\end_inset
+
+ son iguales, o de 
+\begin_inset Formula $X[i]\lor Y[i]$
+\end_inset
+
+ si es un movimiento diagonal y 
+\begin_inset Formula $X[i]\land Y[i]$
+\end_inset
+
+ son iguales.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Manual de uso
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Para ejecutar el programa se debe ejecutar LCS.py con python3 
+\end_layout
+
+\begin_layout Standard
+Ejemplo ejecución en ubuntu: 
+\end_layout
+
+\begin_layout Standard
+1.
+ Abrir una terminal en linux en el directorio del programa 
+\end_layout
+
+\begin_layout Standard
+2.
+ Ejecutar en la terminal "python3 LCS.py"
+\end_layout
+
+\begin_layout Standard
+3.
+ En pantalla se muestra la subsecuencia más larga común de las dos secuencias
+ recibidas por entrada.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

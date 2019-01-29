@@ -1,0 +1,2255 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Taller 6
+\end_layout
+
+\begin_layout Author
+Carlos Barón - Andrés Cocunubo
+\end_layout
+
+\begin_layout Date
+07/03/2018
+\end_layout
+
+\begin_layout Enumerate
+Punto 1 Subsecuencia creciente más larga
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Descripción problema
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+La subsecuencia creciente más larga es una secuencia (no necesariamente
+ de elementos contiguos) que sigue la definición de una relación de orden
+ parcial <.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Formalización
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Dada una secuencia 
+\begin_inset Formula $S$
+\end_inset
+
+ de 
+\begin_inset Formula $n$
+\end_inset
+
+ elementos, encontrar un subsecencia 
+\begin_inset Formula $R$
+\end_inset
+
+ , que poseen una relacion de orden parcial.
+\end_layout
+
+\begin_layout Enumerate
+Entradas: Una secuencia 
+\begin_inset Formula $S$
+\end_inset
+
+ de números.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $S=<a_{i},...,a_{j}>|i<j\in\mathbb{\mathbb{N}}$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Salidas: Una subsecuencia 
+\begin_inset Formula $R$
+\end_inset
+
+ tal que:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $R=<r_{i},...,r_{j}>$
+\end_inset
+
+
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $S$
+\end_inset
+
+ 
+\begin_inset Formula $\land$
+\end_inset
+
+ 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+
+\begin_inset Formula $<k<r_{j}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Algoritmos
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Subsecuencia creciente más larga
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure LIS(S)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $M$
+\end_inset
+
+
+\begin_inset Formula $\in\mathbb{N}^{|S|x|S|}$
+\end_inset
+
+ 
+\begin_inset Formula $\leftarrow[1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+for 
+\begin_inset Formula $i$
+\end_inset
+
+ 
+\begin_inset Formula $\leftarrow0$
+\end_inset
+
+ to 
+\begin_inset Formula $|S|$
+\end_inset
+
+ do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+for 
+\begin_inset Formula $j$
+\end_inset
+
+ 
+\begin_inset Formula $\leftarrow0$
+\end_inset
+
+ to 
+\begin_inset Formula $i$
+\end_inset
+
+ do 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $S[i]<S[i+1]$
+\end_inset
+
+ then 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+ 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $M[i][j]+1$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+end if
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $M[i+1][j]\leftarrow M[i][j]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+end for 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+end for
+\end_layout
+
+\begin_layout Plain Layout
+end procedure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Backtracking Subsecuencia creciente más larga 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure Backtracking(S)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $R$
+\end_inset
+
+ be an empty sequence
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $j\leftarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+while 
+\begin_inset Formula $j!=len(S)$
+\end_inset
+
+ do 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $M[len(S)][j]>M[len(S)][j+1]$
+\end_inset
+
+ then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $S[j]$
+\end_inset
+
+ into 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+end if
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $j\leftarrow j+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+end while 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $S[len(S)]<S[j-1]$
+\end_inset
+
+ then 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $S[j-1]$
+\end_inset
+
+ into 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $S[j]$
+\end_inset
+
+ into 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+end if 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return R 
+\end_layout
+
+\begin_layout Plain Layout
+end procedure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Análisis del diseño
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Se partió del siguiente diseño recurrente para la resolción del problema:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $LIS(i,j)=\left\{ \begin{array}{lcc}
+1 & si & i=j\\
+max(LIS(i+1,k)+1) & si & S[i]<S[i+1]\\
+max(LIS(i+1,k)) & si & S[i]>S[i+1]
+\end{array}\right.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La tabla de memoización 
+\begin_inset Formula $M$
+\end_inset
+
+ se llena desde la última posición(esquina inferior derecha), y de arriba
+ para abajo, dejando la solución al problema en la primera columna y última
+ fila, una vez sabido esto se procede a armar la secuencia resultante para
+ esto se toma la última fila y se crea un contador 
+\begin_inset Formula $j$
+\end_inset
+
+ para moverse a través de las columnas, si el valor que se encuentra en
+ la tabla 
+\begin_inset Formula $M[|S|][j]$
+\end_inset
+
+ es mayor a 
+\begin_inset Formula $M[|S|][j+1]$
+\end_inset
+
+ el valor actual en la secuencia se agrega a la respuesta, adicionalmente
+ se tiene en cuenta si las últimas posiciones de la tabla son iguales, para
+ luego comparar y decidir si los valores de la secuencia son mayores para
+ agregar a la respuesta.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Invariante
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Para el algoritmo de bottom-up todos los valores que se encuentren en la
+ parte inferior a la diagonal de la matriz de memoización 
+\begin_inset Formula $M$
+\end_inset
+
+, indican el tamaño de la secuencia más larga hasta ese momento.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Complejidad
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Para el algoritmo de bottom-up por inspección se determina que la complejidad
+ del algoritmo es 
+\begin_inset Formula $O(|S|^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+En cuanto al algoritmo de backtracking puesto que tiene un ciclo while,
+ no siempre se recorrerá en diagonal la matriz, por lo cual su complejidad
+ vendría dada por 
+\begin_inset Formula $\Theta(|S|)$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Punto 2 Edición de Distancias
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Problema
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Encontrar la menor diferencia entre dos secuencias de carácteres.
+ La menor difrencia se define como la cantidad de ediciones, inserciones
+ o eliminaciones para hacer que una cadena sea igual a otra.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Formalizacion
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Dadas dos secuencias X y Y, encontrar una secuencia S de comandos, donde
+ S indique como convertir X en Y
+\end_layout
+
+\begin_layout Enumerate
+Entrada: Una secuencia 
+\begin_inset Formula $X$
+\end_inset
+
+ de 
+\begin_inset Formula $n$
+\end_inset
+
+ elementos 
+\begin_inset Formula $X=$
+\end_inset
+
+<
+\begin_inset Formula $x_{n}\in T$
+\end_inset
+
+> y una secuencia 
+\begin_inset Formula $Y$
+\end_inset
+
+ de 
+\begin_inset Formula $m$
+\end_inset
+
+ elementos 
+\begin_inset Formula $Y=$
+\end_inset
+
+<
+\begin_inset Formula $y_{m}\in T$
+\end_inset
+
+> donde 
+\begin_inset Formula $X\land Y$
+\end_inset
+
+ pueden poseer una relación de equivalencia sobre una subsecuencia 
+\begin_inset Formula $T$
+\end_inset
+
+ de 
+\begin_inset Formula $X\lor Y$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $X=<x_{0},...,x_{n}>\land$
+\end_inset
+
+ 
+\begin_inset Formula $Y=<y_{0},...,y_{m}>$
+\end_inset
+
+
+\begin_inset Formula $|\exists(x_{i}=y_{j}\lor x_{i}=x_{k}\lor y_{i}=y_{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Salida: Una secuencia 
+\begin_inset Formula $S$
+\end_inset
+
+ de 
+\begin_inset Formula $k$
+\end_inset
+
+ elementos 
+\begin_inset Formula $S=<s_{k}\in C>$
+\end_inset
+
+donde 
+\begin_inset Formula $s_{k}$
+\end_inset
+
+ puede ser igual a 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $InsertCommand$
+\end_inset
+
+ que posee un 
+\begin_inset Formula $y_{j}$
+\end_inset
+
+ (elemento a insertar) y una posicion (posición donde insertar) 
+\begin_inset Formula $i$
+\end_inset
+
+ en 
+\begin_inset Formula $X$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\lor$
+\end_inset
+
+ 
+\begin_inset Formula $DeleteCommand$
+\end_inset
+
+ que posee una posicion (posición donde eliminar) 
+\begin_inset Formula $i$
+\end_inset
+
+ en 
+\begin_inset Formula $X$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\lor$
+\end_inset
+
+ 
+\begin_inset Formula $ChangeCommand$
+\end_inset
+
+ que posee un 
+\begin_inset Formula $y_{j}$
+\end_inset
+
+ (elemento para cambio), un 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ (elemento a cambiar) y una posicion (posición donde cambiar) 
+\begin_inset Formula $i$
+\end_inset
+
+ en 
+\begin_inset Formula $X$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $S=<s_{0},...,s_{p}>|$
+\end_inset
+
+
+\begin_inset Formula $s_{i}=InsertCommand$
+\end_inset
+
+
+\begin_inset Formula $\land$
+\end_inset
+
+
+\begin_inset Formula $s_{i}=DeleteCommand$
+\end_inset
+
+
+\begin_inset Formula $\land$
+\end_inset
+
+
+\begin_inset Formula $s_{i}=ChangeCommand$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Pseudocódigo
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distancias de Edición
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure ED(
+\begin_inset Formula $X$
+\end_inset
+
+,
+\begin_inset Formula $Y$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $M\in\mathbb{N}^{|X|x|Y|}\leftarrow[0]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $B\in\mathbb{N}^{|X|x|Y|}\leftarrow[0,0]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+for 
+\begin_inset Formula $i\leftarrow1$
+\end_inset
+
+ to 
+\begin_inset Formula $|X|$
+\end_inset
+
+ do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+for 
+\begin_inset Formula $j\leftarrow1$
+\end_inset
+
+ to 
+\begin_inset Formula $|Y|$
+\end_inset
+
+ do
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $i$
+\end_inset
+
+ = 0 then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $j$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $[0,-1$
+\end_inset
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+else if 
+\begin_inset Formula $j$
+\end_inset
+
+ = 0 then
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $[-1,0$
+\end_inset
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+det
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\begin_inset Formula $M[i-1][j]+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+ins
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\begin_inset Formula $M[i][j-1]+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+chg
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\begin_inset Formula $M[i-1][j+1]+d(X,Y,i,i)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $det<ins\land det<chg$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $det$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $[-1,0$
+\end_inset
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+else if 
+\begin_inset Formula $ins<det\land ins<chg$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $ins$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $[0,-1$
+\end_inset
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $M[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $chg$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $B[i][j]$
+\end_inset
+
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $[-1,-1$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Bactracking distacias de edición
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+procedure ED_Backtracking(
+\begin_inset Formula $X$
+\end_inset
+
+,
+\begin_inset Formula $Y,B$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+let 
+\begin_inset Formula $Output$
+\end_inset
+
+ as an empty list
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $i\leftarrow|X|$
+\end_inset
+
+, 
+\begin_inset Formula $j\leftarrow|Y|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+while 
+\begin_inset Formula $i\geq0\land j\geq0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $C\leftarrow B[i][j]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $X[i]\neq Y[j]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $C[0]=-1\land C[1]=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $i=j$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $"ChangeCommand"$
+\end_inset
+
+ into 
+\begin_inset Formula $Output$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $"DeleteCommand"$
+\end_inset
+
+ into 
+\begin_inset Formula $Output$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+else if 
+\begin_inset Formula $C[0]=0\land C[1]=-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+if 
+\begin_inset Formula $i=j$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $"ChangeCommand"$
+\end_inset
+
+ into 
+\begin_inset Formula $Output$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{3cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $"InsertCommand"$
+\end_inset
+
+ into 
+\begin_inset Formula $Output$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2cm}
+\end_layout
+
+\end_inset
+
+else if 
+\begin_inset Formula $C[0]=-1\land C[1]=-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{2.5cm}
+\end_layout
+
+\end_inset
+
+insert 
+\begin_inset Formula $"ChangeCommand"$
+\end_inset
+
+ into 
+\begin_inset Formula $Output$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1.5cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $i\leftarrow i+C[0]$
+\end_inset
+
+, 
+\begin_inset Formula $j\leftarrow j+C[1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace{1cm}
+\end_layout
+
+\end_inset
+
+return 
+\begin_inset Formula $Output$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Análisis del diseño 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Para solucionar el problema se partío del siguiente diseño recurrente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ed(|X|,|Y|)=\left\{ \begin{array}{lcc}
+|X| & si & i=0\\
+\\
+|Y| & si & j=0\\
+\\
+min([1+ed(i-1,j)],[1+ed(i,j-1)],[d(i,j)+ed(i-1,j-1)]) & sino
+\end{array}\right.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En seguida se prodeció a memoizar el problema con la tabla 
+\begin_inset Formula $M$
+\end_inset
+
+, guardando cada resultado en una posición 
+\begin_inset Formula $[i,j]$
+\end_inset
+
+.
+ Para realizar el bottom-up, se identificó que para calcular cada elemento
+ se necesitaba del valor en una posición menos en 
+\begin_inset Formula $i$
+\end_inset
+
+, donde se encontraba el costo de eliminar, el valor de una posición menos
+ en 
+\begin_inset Formula $j$
+\end_inset
+
+, donde se encontraba el costo de insertar y el valor de una posición menos
+ en 
+\begin_inset Formula $i$
+\end_inset
+
+ y 
+\begin_inset Formula $j$
+\end_inset
+
+, donde se encontraba el costo de cambiar, para asi calcular cual era el
+ menor y guardarlo en la posicón actual.
+ Con base en lo anterior, se pudo identificar que para construir la tabla,
+ era necesario realizar un recorrido normal a la matriz, primero recorrer
+ las filas y por cada fila recorrer las columnas.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Invariante
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+La invariante del algoritmo de bottom-up es que cada elemento de la tabla
+ en una posición 
+\begin_inset Formula $[i,j]$
+\end_inset
+
+ representa el minimo numero de cambios que se tienen que hacer, hasta la
+ posicion 
+\begin_inset Formula $i$
+\end_inset
+
+ en 
+\begin_inset Formula $X$
+\end_inset
+
+ y la posicion 
+\begin_inset Formula $j$
+\end_inset
+
+ en 
+\begin_inset Formula $Y$
+\end_inset
+
+ , para convertir 
+\begin_inset Formula $X$
+\end_inset
+
+ en 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Complejidad
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Por inspección de código la complejidad del algoritmo ED es 
+\begin_inset Formula $O(n*m)$
+\end_inset
+
+, siendo 
+\begin_inset Formula $n$
+\end_inset
+
+ el tamaño de la primera secuencia y 
+\begin_inset Formula $m$
+\end_inset
+
+ el tamaño de la segunda secuencia, debido a que se realiza un recorrido
+ completo y ordenado en cuanto a filas y columnas a un matriz de dimesiones
+ 
+\begin_inset Formula $nm$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+En cuanto al backtracking su complejidad es 
+\begin_inset Formula $\Theta(n)$
+\end_inset
+
+ debido a que forzosamente se hace un recorrido sesgado a la diagonal de
+ la matriz.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document

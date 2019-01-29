@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\begin{document}
+\begin{center}
+\includegraphics[width=0.2\textwidth]{logoPUJ.png}\newline
+Análisis de Algoritmos\newline
+Taller 3\newline
+Carlos Barón\newline
+Andrés Cocunubo\newline
+\end{center}
+\section{Descripción problema}
+Encontrar la subsecuencia palíndroma consecutiva más larga a partir de una secuencia de entrada.
+\section{Formalización}
+Dada una secuencia \(I\) de \(n\) elementos, donde algunos poseen  una  relación de equivalencia, encontrar la máxima subsecuencia \(I'\) que cumpla la condición de ser  \(=\)  \(I'\) invertido.
+\subsection{Entradas}
+Una secuencia \(I\) de n elementos: \[x_{1},x_{2},...,x_{n}\] , donde cada \[x_{n}\] está definido en la relación de equivalencia.
+\subsection{Salidas}
+Una subsecuencia de elementos \[x_{0},...,x_{i},...,x_{n-1}\] donde, \[x_{0}=x_{n-1}\] \[x_{i}=x_{n-1-i}\] 
+\section{Algoritmos}
+\subsection{Fuerza Bruta}
+\(procedimiento\hspace{0,2cm}EsPalindroma(palabra)\)\newline
+\indent\(cad<-[]\)\newline
+\indent\(for\hspace{0,2cm}k\hspace{0,2cm}<-\hspace{0,2cm}|palabra|\hspace{0,2cm}downto\hspace{0,2cm}1\hspace{0,2cm}do\)\newline
+\indent\indent\(cad<-palabra[k]\)\newline
+\indent\(if\hspace{0,2cm}cad\hspace{0,2cm}==\hspace{0,2cm}palabra\hspace{0,2cm}return\hspace{0,2cm}True\)\newline
+\newline
+\(procedimiento\hspace{0,2cm}palindroma(palabra)\)\newline
+\indent\(indices <- [\hspace{0,2cm}]\)\newline
+\indent\(for\hspace{0,2cm}i\hspace{0,2cm}<-\hspace{0,2cm}1\hspace{0,2cm}to\hspace{0,2cm}|palabra|\hspace{0,2cm}do\)\newline
+\indent\indent \(for\hspace{0,2cm}j\hspace{0,2cm}<-\hspace{0,2cm}|palabra|\hspace{0,2cm}downto\hspace{0,2cm}0\hspace{0,2cm}do\)\newline
+\indent\indent \indent \(if\hspace{0,2cm}EsPalindroma(palabra[i:j])\hspace{0,2cm}then\)\newline
+\indent\indent \indent \indent\(if\hspace{0,2cm}|palabra[indices[1]:indices[2]]|\hspace{0,2cm}<\hspace{0,2cm}|palabra[i:j]|\hspace{0,2cm}then\)\newline
+\indent\indent \indent \indent\indent\(indices[1]<-i\)\newline
+\indent\indent \indent \indent\indent\(indices[2]<-j\)\newline
+\indent\(return\hspace{0,2cm}indices\)
+\subsection{Dividir y vencer}
+\(procedimiento\hspace{0,2cm}IsPalindrome(A, l, h)\)\newline
+\indent\(x<-True\)\newline
+\indent\(aux<-0\)\newline
+\indent\(for\hspace{0,2cm}i<-l\hspace{0,2cm}to\hspace{0,2cm}h\hspace{0,2cm}do\)\newline
+\indent\indent\(if\hspace{0,2cm}A[i]\hspace{0,2cm}!=\hspace{0,2cm}A[h-aux]\hspace{0,2cm}then\)\newline
+\indent\indent\indent\(x<-False\)\newline
+\indent\indent\(aux<-aux+1\)\newline
+\indent\(return\hspace{0,2cm}x\)\newline
+\newline
+\(procedimiento\hspace{0,2cm}compSubPalindrome(A,B,C)\)\newline
+\indent\(if\hspace{0,2cm}A[2]-A[1]\hspace{0,2cm}>=\hspace{0,2cm}B[2]-B[1]\hspace{0,2cm}and\hspace{0,2cm}A[2]-A[1]\hspace{0,2cm}>=\hspace{0,2cm}C[2]-C[1]\hspace{0,2cm}then\hspace{0,2cm}return\hspace{0,2cm}A\)\newline
+\indent\(else\hspace{0,1cm}if\hspace{0,2cm}B[2]-B[1]\hspace{0,2cm}>=\hspace{0,2cm}A[2]-A[1]\hspace{0,2cm}and\hspace{0,2cm}B[2]-B[1]\hspace{0,2cm}>=\hspace{0,2cm}C[2]-C[1]\hspace{0,2cm}then\hspace{0,2cm}return\hspace{0,2cm}B\)\newline
+\indent\(else\hspace{0,2cm}return\hspace{0,2cm}C\)\newline
+\newline
+\(procedimiento\hspace{0,2cm}FindMaxCrossPalindromeAux(i,j,r,A)\)\newline
+\indent\(retorno<-r\)\newline
+\indent\(cond<-True\)\newline
+\indent\(while\hspace{0,2cm}i\hspace{0,2cm}>=\hspace{0,2cm}0\hspace{0,2cm}and\hspace{0,2cm}j<=|A|-1\hspace{0,2cm}and\hspace{0,2cm}cond\hspace{0,2cm}do\)\newline
+\indent\indent\(if\hspace{0,2cm}A[i]\hspace{0,2cm}==\hspace{0,2cm}A[j]\hspace{0,2cm}do\)\newline
+\indent\indent\indent\(retorno<-i\)\newline
+\indent\indent\indent\(retorno<-j\)\newline
+\indent\indent\(else\)\newline
+\indent\indent\indent\(cond<-False\)\newline
+\indent\indent\(i<-i-1\)\newline
+\indent\indent\(j<-j+1\)\newline
+\indent\(return\hspace{0,2cm}retorno\)\newline
+\newline
+\(procedimiento\hspace{0,2cm}FindMaxCrossPalindrome(A, l, m, h)\)\newline
+\indent\(B<-[l,l]\)\newline
+\indent\(C<-[l,l]\)\newline
+\indent\(D<-[l,l]\)\newline
+\indent\(if\hspace{0,2cm}m-1\hspace{0,2cm}>=\hspace{0,2cm}0\hspace{0,2cm}and\hspace{0,2cm}A[m-1]\hspace{0,2cm}==\hspace{0,2cm}A[m+1]\hspace{0,2cm}do\)\newline
+\indent\indent\(B<-m-1\)\newline
+\indent\indent\(B<-m+1\)\newline
+\indent\indent\(B<-FindMaxCrossPalindromeAux(m-2,m+2,B,A)\)\newline
+\indent\(if\hspace{0,2cm}A[m]\hspace{0,2cm}==\hspace{0,2cm}A[m+1]\hspace{0,2cm}do\)\newline
+\indent\indent\(C<-m\)\newline
+\indent\indent\(C<-m+1\)\newline
+\indent\indent\(C<-FindMaxCrossPalindromeAux(m-1,m+2,C,A)\)\newline
+\indent\(if\hspace{0,2cm}m-1\hspace{0,2cm}>=\hspace{0,2cm}0\hspace{0,2cm}and\hspace{0,2cm}A[m-1]\hspace{0,2cm}==\hspace{0,2cm}A[m]\hspace{0,2cm}do\)\newline
+\indent\indent\(D<-m-1\)\newline
+\indent\indent\(D<-m\)\newline
+\indent\indent\(D<-FindMaxCrossPalindromeAux(m-2,m+1,D,A)\)\newline
+\indent\(return\hspace{0,2cm}compSubPalindrome(B,C,D)\)\newline
+\newline
+\(procedimiento\hspace{0,2cm}FindMaxPalindrome(A,l,h)\)\newline
+\indent\(if\hspace{0,2cm}h\hspace{0,2cm}<=\hspace{0,2cm}l\hspace{0,2cm}do\)\newline
+\indent\indent\(X<-[]\)\newline
+\indent\indent\(X<-l\)\newline
+\indent\indent\(X<-h\)\newline
+\indent\indent\(return X\)\newline
+\indent\(else\)\newline
+\indent\indent\(L<-[]\)\newline
+\indent\indent\(R<-[]\)\newline
+\indent\indent\(C<-[]\)\newline
+\indent\indent\(m<-(l+h)/2\)\newline
+\indent\indent\(L<-FindMaxPalindrome(A,l,m)\)\newline
+\indent\indent\(R<-FindMaxPalindrome(A,m+1,h)\)\newline
+\indent\indent\(C<-FindMaxCrossPalindrome(A,l,m,h)\)\newline
+\indent\indent\(LP<-IsPalindrome(A, l, m)\)\newline
+\indent\indent\(RP<-IsPalindrome(A, m+1, h)\)\newline
+\indent\indent\(FINAL<-[]\)\newline
+\indent\indent\(if\hspace{0,2cm}RP\hspace{0,2cm}do\)\newline
+\indent\indent\indent\(R<-m+1\)\newline
+\indent\indent\indent\(R<-h\)\newline
+\indent\indent\(if\hspace{0,2cm}LP\hspace{0,2cm}do\)\newline
+\indent\indent\indent\(L<-l\)\newline
+\indent\indent\indent\(L<-m\)\newline
+\indent\indent\(FINAL<-compSubPalindrome(L,R,C)\)\newline
+\indent\indent\(if\hspace{0,2cm}FINAL[1]\hspace{0,2cm}-\hspace{0,2cm}FINAL[0]\hspace{0,2cm}\hspace{0,2cm}>\hspace{0,2cm}maxp[1]\hspace{0,2cm}maxp[0]\hspace{0,2cm}do\)\newline
+\indent\indent\indent\(maxp<-FINAL[0]\)\newline
+\indent\indent\indent\(maxp<-FINAL[1]\)\newline
+\indent\indent\(return\hspace{0,2cm}FINAL\)\newline
+\section{Comparación}
+La complejidad teórica por inspección del algoritmo de fuerza bruta es 
+\[
+O(n^3)
+\]
+y para el algoritmo dividir y vencer  usando el teorema maestro es
+\[ \Theta (n*log_2n)\] Teniendo en cuenta esto y los algoritmos se puede notar que en el primero se deben recorrer los 3 ciclos en el peor de los casos, mientras que para el segundo se realizan dos llamados recurrentes y en cada uno se hace un ciclo de complejidad \(n\).\newline
+Para la realización del algoritmo de fuerza bruta no se requirió el mayor esfuerzo en el planteamiento del diseño, sin embargo, para dividir y vencer fué necesario determinar un diseño mucho más elaborado, puesto que al momento de dividir el problema se debe conocer que operaciones aplicar y poder determinar la mejor solución.\newline
+Al momento de realizar la pruebas se logró evidenciar que el algoritmo de fuerza bruta tardó un tiempo en mostrar el resultado correspondiente, mientras que el algoritmo dividir y vencer entregaba la solución casi de inmediato, demostrando así que este último es mucho más eficiente.\newline 
+Además, dividir y vencer necesita más variables para ir almacenando sus datos  y fuerza bruta menor cantidad  por lo que en cierto punto puede, dividir y vencer consumir más memoria.
+\section{Manual de uso}
+Para ejecutar el programa se debe ejecutar Palindroma.py con python3 para la solucion divide y venceras ó
+palindromaBruta.py para la solucion de fuerza bruta
+Ejemplo ejecución en ubuntu:\newline
+    \indent 1. Abrir una terminal en linux en el directorio del programa.\newline
+    \indent2. Ejecutar en la terminal "python3 Palindroma.py" ó "python3 palindromaBruta.py".\newline
+\section{Descripción de pruebas}
+\begin{itemize}
+\item ListT: Secuencia en la que toda la secuencia es una palindroma.
+\item ListI: Secuencia en la que la maxima subsecuencia palindroma se encuentra en el extremo izquierdo.
+\item ListD: Secuencia en la que la maxima subsecuencia palindroma se encuentra en el extremo derecho.
+\item ListM: Secuencia en la que la maxima subsecuencia palindroma se encuentra entre otras subsecuencias.
+\item List100: Secuencia de 100 elementos con una palindroma visible entre otras subsecuencias.
+\item List500: Secuencia de 500 elementos con una palindroma visible entre otras subsecuencias.
+\item List1000: Secuencia de 1000 elementos con una palindroma visible entre otras subsecuencias.
+\end{itemize}
+\end{document}

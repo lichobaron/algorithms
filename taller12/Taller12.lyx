@@ -1,0 +1,1627 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Taller 12
+\end_layout
+
+\begin_layout Author
+Carlos Barón - Andrés Cocunubo
+\end_layout
+
+\begin_layout Enumerate
+Descripción del problema
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Queremos crear un nuevo plato, para esto tenemos varios ingredientes que
+ podemos escoger y adicionalmente queremos usar tantos como sea posible,
+ sin embargo, ciertos ingredientes no saben bien juntos.
+ Para ello se tiene una matriz que indica la discordancia entre dos ingredientes
+, 0.0 indica que los ingredientes van perfectamente bien juntos y 1.0 significa
+ que no van nada bien juntos.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Formalización
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Entradas
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Cantidad de ingredientes: Se 
+\begin_inset Formula $n$
+\end_inset
+
+ la cantidad de ingredientes disponibles.
+ 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Tabla de discordancia: Sea una tabla 
+\begin_inset Formula $T\in D^{nxn}$
+\end_inset
+
+ y 
+\begin_inset Formula $D\subseteq\mathbb{R}|0\leq d_{i}\leq1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Valor de discordancia: Sea 
+\begin_inset Formula $p$
+\end_inset
+
+ un valor que indica la discordancia máxima que debe tener el plato.
+ 
+\begin_inset Formula $p\in\mathbb{R}|p\geq0$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Salidas
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Secuencia 
+\begin_inset Formula $I$
+\end_inset
+
+ que contiene tuplas con los indices que indican un valor de discordancia,
+ además estos valores cumplen con ser la combinación máxima de elementos
+ cuya suma es menor o igual a 
+\begin_inset Formula $p$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $I=\{d_{0},...,d_{k}\}|d_{i}=[x,y]|0\leq i\leq n\land|I|=max(combT)\land\sum_{i=0}^{k}I_{i}\leq p$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Discordancia 
+\begin_inset Formula $total$
+\end_inset
+
+ de la combinación de ingredientes.
+ 
+\begin_inset Formula $total\in\mathbb{R}|total\geq0$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Análisis del problema
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Problema de decisión ya que se debe escoger si un ingrediente se usará o
+ no dentro del plato.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Clase de Problema
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+NP-Completo:
+\end_layout
+
+\begin_layout Itemize
+Es un problema de decisión.
+\end_layout
+
+\begin_layout Itemize
+Su solución de fuerza bruta es superpolinomial porque se necesitan revisar
+ todas las posibles combinaciones de ingredientes.
+\end_layout
+
+\begin_layout Itemize
+Se puede verificar en 
+\begin_inset Formula $P$
+\end_inset
+
+ porque sólo se necesita un recorrido plano en la lista de ingredientes.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Pseudocódigos
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Algoritmo Fuerza Bruta
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Procedure
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Potencia
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $L$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+If
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $|L|=0$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $Empty$
+\end_inset
+
+ 
+\begin_inset Formula $list$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $Q\leftarrow L[0..|L|-1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $R\leftarrow Potencia(Q)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $r\leftarrow|R|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+For
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $i\leftarrow0$
+\end_inset
+
+ 
+\series bold
+to
+\series default
+ 
+\begin_inset Formula $r$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $S\leftarrow R[i]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $S\cup L[|L|]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R\cup S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndProcedure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algoritmo Conjunto Potencia
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Algoritmo Heurístico
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Procedure
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+RecipeE
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $T,p,n$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+let
+\series default
+ 
+\series bold
+
+\begin_inset Formula $U$
+\end_inset
+
+ be
+\series default
+ an array of 
+\begin_inset Formula $n$
+\end_inset
+
+ zeros
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+let
+\series default
+ 
+\series bold
+
+\begin_inset Formula $R$
+\end_inset
+
+ be
+\series default
+ an empty list
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $pAcum\leftarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+While
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $pAcum\leq p$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $minD\leftarrow\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $coorMin\leftarrow[0,0]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $i\leftarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+While
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $i<n$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+      
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $j\leftarrow i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+      
+\backslash
+While
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $j<n$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+        
+\backslash
+If
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $U[i]\neq1\wedge U[j]\neq1$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+          
+\backslash
+If
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $i\neq j\land T[i][j]<minD$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+            
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $minD\leftarrow T[i][j]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+            
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $coorMin\leftarrow[i,j]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+          
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+        
+\backslash
+EndIf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+      
+\backslash
+EndWhile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+EndWhile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $pAcum\leftarrow pAcum+minD$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $U[coorMin.i]\leftarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $U[coorMin.j]\leftarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $R\cup coorMin$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+EndWhile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $sum\leftarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+For
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $i\leftarrow0$
+\end_inset
+
+ 
+\series bold
+to
+\series default
+ 
+\begin_inset Formula $|R|$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $sum\leftarrow suma+T[R[i].i][R[i].j]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+EndFor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+  
+\backslash
+State
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Return
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $<R,sum>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndProcedure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algoritmo Heurístico
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Complejidad
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Algoritmo Fuerza Bruta
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+El algoritmo de fuerza bruta se dividió en dos partes.
+ La primera consiste en calcular todas las posibles combinaciones de tuplas
+ ingredientes, lo cual posee una complejidad de 
+\begin_inset Formula $O(2^{n}).$
+\end_inset
+
+ En la otra mano, la segunda parte consiste en escoger la mejor combinación
+ de las combinaciones obtenidas, en otras palabras la que posea mas elementos
+ y cumpla con la restricción p, esta operación posee una complejidad de
+ 
+\begin_inset Formula $O(l*m)$
+\end_inset
+
+ siendo
+\begin_inset Formula $l$
+\end_inset
+
+ la cantidad de combinaciones posibles y 
+\begin_inset Formula $m$
+\end_inset
+
+la cantidad de elemntos de cada combinación.
+ Por lo tanto, la complejidad del algoritmo es:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $O(2^{n})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Algoritmo Heurístico
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+La solución del algoritmo heurístico consiste en recorrer la matriz de ingredien
+tes, para encontrar la mejor la mejor pareja de ingredientes, tantas veces
+ como sea necesario hasta satisfacer el p dado o utilizar todos los ingredientes.
+ La búsqueda de la mejor pareja posee una complejidad de 
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+ y esta operación se realiza 
+\begin_inset Formula $m$
+\end_inset
+
+ veces hasta encontrar el resultado.
+ Por lo tanto, la complejidad del algoritmo heurístico es:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $O(n^{2}*m)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Invariante
+\end_layout
+
+\begin_layout Enumerate
+Análisis Resultados
+\end_layout
+
+\end_body
+\end_document

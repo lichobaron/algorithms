@@ -1,0 +1,101 @@
+--------------------Prueba  1 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.4
+Resultado:  [[1, 2], [3, 4]]
+Tiempo transcurrido: 0.0411360264 seconds.
+----Algoritmo Euristico-------
+Suma:  0.6000000000000001
+Resultado:  [[1, 3], [0, 4]]
+Tiempo transcurrido: 0.0010082722 seconds.
+--------------------------------------------------
+--------------------Prueba  2 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.0
+Resultado:  [[0, 1], [2, 3], [4, 5]]
+Tiempo transcurrido: 4.7141675949 seconds.
+----Algoritmo Euristico-------
+Suma:  0.30000000000000004
+Resultado:  [[0, 1], [4, 5], [2, 3]]
+Tiempo transcurrido: 0.0000000000 seconds.
+--------------------------------------------------
+--------------------Prueba  3 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.2
+Resultado:  [[0, 4], [2, 3]]
+Tiempo transcurrido: 0.0420861244 seconds.
+----Algoritmo Euristico-------
+Suma:  0.5
+Resultado:  [[2, 3], [0, 4]]
+Tiempo transcurrido: 0.0000000000 seconds.
+--------------------------------------------------
+--------------------Prueba  4 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.2
+Resultado:  [[1, 3], [2, 4]]
+Tiempo transcurrido: 0.0430140495 seconds.
+----Algoritmo Euristico-------
+Suma:  0.4
+Resultado:  [[1, 3], [0, 4]]
+Tiempo transcurrido: 0.0009860992 seconds.
+--------------------------------------------------
+--------------------Prueba  5 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.0
+Resultado:  [[0, 2], [3, 4]]
+Tiempo transcurrido: 0.0420889854 seconds.
+----Algoritmo Euristico-------
+Suma:  0.2
+Resultado:  [[0, 2], [1, 4]]
+Tiempo transcurrido: 0.0010445118 seconds.
+--------------------------------------------------
+--------------------Prueba  6 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.1
+Resultado:  [[1, 2], [3, 4]]
+Tiempo transcurrido: 0.0429568291 seconds.
+----Algoritmo Euristico-------
+Suma:  0.5
+Resultado:  [[3, 4], [0, 1]]
+Tiempo transcurrido: 0.0010147095 seconds.
+--------------------------------------------------
+--------------------Prueba  7 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.2
+Resultado:  [[1, 3], [2, 4]]
+Tiempo transcurrido: 0.0430259705 seconds.
+----Algoritmo Euristico-------
+Suma:  0.2
+Resultado:  [[2, 4], [0, 3]]
+Tiempo transcurrido: 0.0009989738 seconds.
+--------------------------------------------------
+--------------------Prueba  8 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.1
+Resultado:  [[1, 2], [3, 4]]
+Tiempo transcurrido: 0.0419995785 seconds.
+----Algoritmo Euristico-------
+Suma:  0.4
+Resultado:  [[1, 2], [3, 4]]
+Tiempo transcurrido: 0.0010418892 seconds.
+--------------------------------------------------
+--------------------Prueba  9 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.1
+Resultado:  [[0, 1], [2, 3], [4, 5]]
+Tiempo transcurrido: 4.7302184105 seconds.
+----Algoritmo Euristico-------
+Suma:  0.5
+Resultado:  [[1, 4], [2, 5], [0, 3]]
+Tiempo transcurrido: 0.0010659695 seconds.
+--------------------------------------------------
+--------------------Prueba  10 --------------------
+----Algoritmo Combinatorio----
+Suma:  0.1
+Resultado:  [[1, 2], [3, 4]]
+Tiempo transcurrido: 0.0420575142 seconds.
+----Algoritmo Euristico-------
+Suma:  0.2
+Resultado:  [[0, 4], [1, 2]]
+Tiempo transcurrido: 0.0010080338 seconds.
+--------------------------------------------------
+
