@@ -1,2 +1,2 @@
-# TalleresAA
-Workshops analysis of algorithms.
+# Algorithms
+Analysis of algorithms.
